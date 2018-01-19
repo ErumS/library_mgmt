@@ -1,0 +1,13 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: library_mgmt_development
+  pool: 5
+  username: root
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  database: library_mgmt_test
+  pool: 5
+  username: root
