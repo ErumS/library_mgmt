@@ -5,8 +5,6 @@ RSpec.describe BooksController, type: :controller do
     
     context 'GET index' do
       it 'should show all books successfully' do
-        book1 = FactoryGirl.create(:book)
-        book2 = FactoryGirl.create(:book)
         get :index, format: 'json'
         response.should have_http_status(:ok)
       end

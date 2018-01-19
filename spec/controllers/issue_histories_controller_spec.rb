@@ -5,8 +5,6 @@ RSpec.describe IssueHistoriesController, type: :controller do
     
     context 'GET index' do
       it 'should show all issue_histories successfully' do
-        issue_history1 = FactoryGirl.create(:issue_history)
-        issue_history2 = FactoryGirl.create(:issue_history)
         get :index, format: 'json'
         response.should have_http_status(:ok)
       end

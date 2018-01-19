@@ -5,8 +5,6 @@ RSpec.describe LibrariesController, type: :controller do
     
     context 'GET index' do
       it 'should show all libraries successfully' do
-        library1 = FactoryGirl.create(:library, phone_no:"545665332234")
-        library2 = FactoryGirl.create(:library, phone_no:"545665332234")
         get :index, format: 'json'
         response.should have_http_status(:ok)
       end

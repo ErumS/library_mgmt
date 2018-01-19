@@ -5,8 +5,6 @@ RSpec.describe MembersController, type: :controller do
     
     context 'GET index' do
       it 'should show all members successfully' do
-        member1 = FactoryGirl.create(:member, phone_no:"746574658745")
-        member2 = FactoryGirl.create(:member, phone_no:"746574658745")
         get :index, format: 'json'
         response.should have_http_status(:ok)
       end

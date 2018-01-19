@@ -5,8 +5,6 @@ RSpec.describe CategoriesController, type: :controller do
     
     context 'GET index' do
       it 'should show all categories successfully' do
-        category1 = FactoryGirl.create(:category)
-        category2 = FactoryGirl.create(:category)
         get :index, format: 'json'
         response.should have_http_status(:ok)
       end
