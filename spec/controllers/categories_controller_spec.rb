@@ -18,8 +18,8 @@ RSpec.describe CategoriesController, type: :controller do
     end
     context 'POST create' do
       it 'should create a valid category' do
-        category = FactoryGirl.build(:category)
-        post :create, category: {department:category.department},format: 'json'
+        library = FactoryGirl.create(:library)
+        post :create, category: {department:"Geology", library_id:library.id},format: 'json'
         response.should have_http_status(:ok)
       end
     end
@@ -27,6 +27,8 @@ RSpec.describe CategoriesController, type: :controller do
       it 'should update a valid category' do
         category = FactoryGirl.create(:category)
         put :update, id:category.id, category: {department:"Botany"}, format: 'json'
+        new_category = Category.last
+        new_category.department.should eq "Botany"
         response.should have_http_status(:ok)
       end
     end
@@ -44,19 +46,17 @@ RSpec.describe CategoriesController, type: :controller do
     context 'GET show' do
       it 'should not show category with invalid id' do
         category = FactoryGirl.create(:category)
-        a = Category.last
-        get :show, id:a.id+1, format: 'json'
+        new_category = Category.last
+        get :show, id:new_category.id+1, format: 'json'
         response.should have_http_status(:not_found)
       end
     end
     context 'POST create' do
       it 'should not create a category with nil entries' do
-        category = FactoryGirl.build(:category)
         post :create, category: {department: nil},format: 'json'
         response.should have_http_status(:unprocessable_entity)
       end
       it 'should not create a category with invalid library id' do
-        category = FactoryGirl.build(:category)
         post :create, category: {library_id:nil},format: 'json'
         response.should have_http_status(:unprocessable_entity)
       end
@@ -64,8 +64,8 @@ RSpec.describe CategoriesController, type: :controller do
     context 'PUT update' do
       it 'should not update the category with invalid id' do
         category = FactoryGirl.create(:category)
-        a = Category.last
-        put :update, id:a.id+1, category: {department:"Biology"}, format: 'json'
+        new_category = Category.last
+        put :update, id:new_category.id+1, category: {department:"Biology"}, format: 'json'
         response.should have_http_status(:not_found)
       end 
       it 'should not update the category with invalid input' do
@@ -75,17 +75,17 @@ RSpec.describe CategoriesController, type: :controller do
       end 
       it 'should not update the category with invalid library id' do
         category = FactoryGirl.create(:category)
-        library = FactoryGirl.create(:library, phone_no:"6667777799")
-        a = Library.last
-        put :update, id:category.id, category: {department:"Geology", library_id:a.id+1}, format: 'json'
+        library = FactoryGirl.create(:library)
+        new_category = Library.last
+        put :update, id:category.id, category: {department:"Geology", library_id:new_category.id+1}, format: 'json'
         response.should have_http_status(:not_found)
       end 
     end 
     context 'DELETE destroy' do
       it 'should not delete the category with invalid id' do
         category = FactoryGirl.create(:category)
-        a = Category.last
-        delete :destroy, id:a.id+1, format: 'json'
+        new_category = Category.last
+        delete :destroy, id:new_category.id+1, format: 'json'
         response.should have_http_status(:not_found)
       end
     end

@@ -5,4 +5,5 @@ class Book < ActiveRecord::Base
   has_many :book_issues, dependent: :destroy
   has_many :issue_histories, through: :book_issues, dependent: :destroy
 	validates :name, presence: true
+  validates :library_id, :category_id, :member_id, presence: true
 end

@@ -18,15 +18,17 @@ RSpec.describe IssueHistoriesController, type: :controller do
     end
     context 'POST create' do
       it 'should create a valid issue_history' do
-        issue_history = FactoryGirl.build(:issue_history)
-        post :create, issue_history: {return_date:issue_history.return_date, issue_date:issue_history.issue_date, member_id:issue_history.member_id, copies:issue_history.copies }, format: 'json'
+        member = FactoryGirl.create(:member)
+        post :create, issue_history: {return_date: "01-02-2014", issue_date: "04-02-2015", copies:2, member_id:member.id }, format: 'json'
         response.should have_http_status(:ok)
       end
     end
     context 'PUT update' do
       it 'should update a valid issue_history' do
         issue_history = FactoryGirl.create(:issue_history)
-        put :update, id:issue_history.id, issue_history: {return_date:"01-02-1996", issue_date:issue_history.issue_date}, format: 'json'
+        put :update, id:issue_history.id, issue_history: {return_date:issue_history.return_date, copies:1, issue_date:issue_history.issue_date}, format: 'json'
+        new_issue_history = IssueHistory.last
+        new_issue_history.copies.should eq 1
         response.should have_http_status(:ok)
       end
     end
@@ -44,29 +46,25 @@ RSpec.describe IssueHistoriesController, type: :controller do
     context 'GET show' do
       it 'should not show a valid issue_history' do
         issue_history = FactoryGirl.create(:issue_history)
-        a = IssueHistory.last
-        get :show, id:a.id+1, format: 'json'
+        new_issue_history = IssueHistory.last
+        get :show, id:new_issue_history.id+1, format: 'json'
         response.should have_http_status(:not_found)
       end
     end
     context 'POST create' do
       it 'should not create a issue_history with invalid input' do
-        issue_history = FactoryGirl.build(:issue_history)
-        post :create, issue_history: {return_date:issue_history.return_date, issue_date:"abc"},format: 'json'
+        post :create, issue_history: {issue_date:"abc"},format: 'json'
         response.should have_http_status(:unprocessable_entity)
       end
       it 'should not create a issue_history with nil entries' do
-        issue_history = FactoryGirl.build(:issue_history)
         post :create, issue_history: {return_date:nil},format: 'json'
         response.should have_http_status(:unprocessable_entity)
       end
       it 'should not create a issue_history with nil entries' do
-        issue_history = FactoryGirl.build(:issue_history)
         post :create, issue_history: {issue_date:nil},format: 'json'
         response.should have_http_status(:unprocessable_entity)
       end
       it 'should not create a issue_history with invalid member_id' do
-        issue_history = FactoryGirl.build(:issue_history)
         post :create, issue_history: {member_id:nil},format: 'json'
         response.should have_http_status(:unprocessable_entity)
       end
@@ -74,8 +72,8 @@ RSpec.describe IssueHistoriesController, type: :controller do
     context 'PUT update' do
       it 'should not update the issue_history with invalid id' do
         issue_history = FactoryGirl.create(:issue_history)
-        a = IssueHistory.last
-        put :update, id:a.id+1, issue_history: {return_date:issue_history.return_date, issue_date:issue_history.issue_date}, format: 'json'
+        new_issue_history = IssueHistory.last
+        put :update, id:new_issue_history.id+1, issue_history: {return_date:issue_history.return_date, issue_date:issue_history.issue_date}, format: 'json'
         response.should have_http_status(:not_found)
       end 
       it 'should not update the issue_history with invalid input' do
@@ -85,18 +83,18 @@ RSpec.describe IssueHistoriesController, type: :controller do
       end 
       it 'should not update the issue_history with invalid member id' do
         issue_history = FactoryGirl.create(:issue_history)
-        a = IssueHistory.last
+        new_issue_history = IssueHistory.last
         member = FactoryGirl.create(:member, phone_no:"6566666788")
-        b = Member.last
-        put :update, id:a.id+1, issue_history: {return_date:issue_history.return_date, issue_date:issue_history.issue_date, member_id:b.id+1}, format: 'json'
+        new_member = Member.last
+        put :update, id:new_issue_history.id+1, issue_history: {return_date:issue_history.return_date, issue_date:issue_history.issue_date, member_id:new_member.id+1}, format: 'json'
         response.should have_http_status(:not_found)
       end
     end 
     context 'DELETE destroy' do
       it 'should not destroy the issue_history with invalid id' do
         issue_history = FactoryGirl.create(:issue_history)
-        a = IssueHistory.last
-        delete :destroy, id:a.id+1, format: 'json'
+        new_issue_history = IssueHistory.last
+        delete :destroy, id:new_issue_history.id+1, format: 'json'
         response.should have_http_status(:not_found)
       end
     end
