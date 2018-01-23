@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <div id="edit_ih">
+    <div class="header">
+      <h3>Edit Issue History:</h3>
+    </div>
+    <div class="form_ih">
+      <form method="post" action="http://localhost:3000/issue_histories">
+        <table>
+          <tr>
+            <td>ISSUE DATE:</td> <td><input type="text" name="issue_history_issue_date" placeholder="issue_history issue date"></td>
+          </tr>
+          <tr>
+            <td>RETURN DATE:</td> <td><input type="text" name="issue_history_return_date" placeholder="issue_history return date"></td>
+          </tr>
+          <tr>
+            <td>COPIES:</td> <td><input type="text" name="issue_history_copies" placeholder="issue_history copies"></td>
+          </tr>
+          <tr>
+            <td><input type="submit" value="Submit" onclick="updation( issue_history_issue_date.value, issue_history_retrun_date.value, issue_history_copies.value )"></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

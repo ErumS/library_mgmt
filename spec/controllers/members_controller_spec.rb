@@ -19,7 +19,7 @@ RSpec.describe MembersController, type: :controller do
     context 'POST create' do
       it 'should create a valid member' do
         library = FactoryGirl.create(:library)
-        post :create, member: {name: "Raahi", phone_no:"5677889890", library_id:library.id},format: 'json'
+        post :create, member: {name: Faker::Name.name, phone_no:"5677889890", library_id:library.id},format: 'json'
         response.should have_http_status(:ok)
       end
     end

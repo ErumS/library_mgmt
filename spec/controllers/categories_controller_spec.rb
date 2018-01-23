@@ -19,7 +19,7 @@ RSpec.describe CategoriesController, type: :controller do
     context 'POST create' do
       it 'should create a valid category' do
         library = FactoryGirl.create(:library)
-        post :create, category: {department:"Geology", library_id:library.id},format: 'json'
+        post :create, category: {department:Faker::Commerce.department, library_id:library.id},format: 'json'
         response.should have_http_status(:ok)
       end
     end

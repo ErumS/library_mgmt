@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <div id="edit_cat">
+    <div class="header">
+      <h3>Edit Category:</h3>
+    </div>
+    <div class="form_cat">
+      <form method="post" action="http://localhost:3000/categories">
+        <table>
+          <tr>
+            <td>DEPARTMENT:</td> <td><input type="text" name="category_dept" placeholder="Department"></td>
+          </tr>
+          <tr>
+            <td><input type="submit" value="Submit" onclick="updation(category_dept.value)"></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

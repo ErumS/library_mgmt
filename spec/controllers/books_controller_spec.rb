@@ -21,7 +21,7 @@ RSpec.describe BooksController, type: :controller do
         library = FactoryGirl.create(:library)
         category = FactoryGirl.create(:category)
         member = FactoryGirl.create(:member)
-        post :create, book: {name: "Memoirs", library_id:library.id, category_id:category.id, member_id:member.id},format: 'json'
+        post :create, book: {name: Faker::Book.title, library_id:library.id, category_id:category.id, member_id:member.id},format: 'json'
         response.should have_http_status(:ok)
       end
     end

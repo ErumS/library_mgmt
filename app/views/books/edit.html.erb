@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <div id="edit_book">
+    <div class="header">
+      <h3>Edit Book:</h3>
+    </div>
+    <div class="form_book">
+      <form method="post" action="http://localhost:3000/books">
+        <table>
+          <tr>
+            <td>Name:</td> <td><input type="text" name="book_name" placeholder="Name"></td>
+          </tr>
+          <tr>
+            <td>Code:</td> <td><input type="text" name="book_code" placeholder="Code"></td>
+          </tr>
+          <tr>
+            <td>Author:</td> <td><input type="text" name="book_author" placeholder="Author"></td>
+          </tr>
+          <tr>
+            <td>Price:</td> <td><input type="text" name="book_price" placeholder="Price"></td>
+          </tr>
+          <tr>
+            <td>Publication:</td> <td><input type="text" name="book_publication" placeholder="Publication"></td>
+          </tr>
+          <tr>
+            <td>Version:</td> <td><input type="text" name="book_version" placeholder="Version"></td>
+          </tr>
+          <tr>
+            <td><input type="submit" value="Submit" onclick="updation(book_name.value, book_code.value, book_author.value, book_price.value, book_publication.value, book_version.value)"></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

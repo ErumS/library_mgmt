@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <div id="edit_lib">
+    <div class="header">
+      <h3>Edit Library:</h3>
+    </div>
+    <div class="form_lib">
+      <form method="post" action="http://localhost:3000/libraries">
+        <table>
+          <tr>
+            <td>NAME:</td> <td><input type="text" name="library_name" placeholder="Library name"></td>
+          </tr>
+          <tr>
+            <td>ADDRESS:</td> <td><input type="text" name="library_address" placeholder="Library address"></td>
+          </tr>
+          <tr>
+            <td>PHONE NUMBER:</td> <td><input type="text" name="library_phone_no" placeholder="Library phone_no"></td>
+          </tr>
+          <tr>
+            <td><input type="submit" value="Submit" onclick="updation(library_name.value, library_address.value, library_phone_no.value)"></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

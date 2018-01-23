@@ -18,7 +18,7 @@ RSpec.describe LibrariesController, type: :controller do
     end
     context 'POST create' do
       it 'should create a valid library' do
-        post :create, library: {name: "High school",address: "Canada",phone_no: "76565474574"},format: 'json'
+        post :create, library: {name: Faker::Name.name,address: Faker::Address.street_address,phone_no: "76565474574"},format: 'json'
         response.should have_http_status(:ok)
       end
     end

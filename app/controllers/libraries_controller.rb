@@ -5,6 +5,7 @@ class LibrariesController < ApplicationController
     @libraries = Library.all
     respond_to do |format|
       format.json {render json: {library: @libraries}, status: :ok }
+      format.html
     end
   end 
 
@@ -13,10 +14,12 @@ class LibrariesController < ApplicationController
       @library = Library.find(params[:id])
       respond_to do |format|
         format.json {render json: {library: @library}, status: :ok}
+        format.html
       end
     rescue => e
       respond_to do |format|
         format.json {render json: {error: e.message}, status: :not_found} 
+        format.html
       end
     end
   end
@@ -26,10 +29,12 @@ class LibrariesController < ApplicationController
     if @library.save
       respond_to do |format|
         format.json {render json: {library: @library}, status: :ok}
+        format.html
       end
     else
       respond_to do |format|
         format.json {render json: {error: @library.errors}, status: :unprocessable_entity}
+        format.html
       end
     end
   end 

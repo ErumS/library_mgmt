@@ -19,7 +19,7 @@ RSpec.describe IssueHistoriesController, type: :controller do
     context 'POST create' do
       it 'should create a valid issue_history' do
         member = FactoryGirl.create(:member)
-        post :create, issue_history: {return_date: "01-02-2014", issue_date: "04-02-2015", copies:2, member_id:member.id }, format: 'json'
+        post :create, issue_history: {return_date: Faker::Date.between(9.days.ago, Date.today), issue_date: Faker::Date.between(19.days.ago, Date.today), copies:Faker::Number.between(1,3), member_id:member.id }, format: 'json'
         response.should have_http_status(:ok)
       end
     end
